@@ -2,13 +2,13 @@
 window.PORTFOLIO = {
   "username": "bitrange",
   "name": "bitrange",
-  "eyebrow": "A LITTLE SPACE. A LOT OF POSSIBILITIES.",
+  "eyebrow": "BITRANGE / 个人主页",
   "headline": [
-    "想法很轻，",
-    "创造，让它发生。"
+    "你好，",
+    "我是 bitrange。"
   ],
-  "intro": "你好，我是 bitrange。欢迎来到我的数字空间，看看代码、生活，以及正在发生的有趣想法。",
-  "about": "从 Java 实验、算法练习，到微服务学习与菜单生成应用，我把学习中的想法写成项目，也把一个个小问题变成继续探索的起点。",
+  "intro": "这里放着我写过的一些项目：菜单应用、Java 练习，还有学习过程中留下的小实验。",
+  "about": "我用 Java 和 JavaScript 写代码，也尝试过用 Dart 做应用。这里的仓库有课程实验、学习笔记，也有想自己做来用的小工具。它们不都完整，但记录了我学过和做过的东西。",
   "email": "",
   "featuredRepos": [
     "chef_menu_app",

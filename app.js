@@ -14,13 +14,13 @@
   if(data.avatar_url&&/^https:\/\/avatars\.githubusercontent\.com\//.test(data.avatar_url)){
    const img=document.createElement('img');img.src=data.avatar_url;img.alt=`${name} 的 GitHub 头像`;img.loading='lazy';img.referrerPolicy='no-referrer';img.addEventListener('error',()=>{$('avatar').textContent='b.';},{once:true});$('avatar').replaceChildren(img);
   }
-  document.title=`${name} — 想法，让它发生。`;
+  document.title=`${name} · 个人主页`;
  }
  function outbound(a,url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}
  for(const a of document.querySelectorAll('.github-link')){if(github){outbound(a,github);a.hidden=false;}}
- if(github){const a=$('contact-link');outbound(a,github);a.setAttribute('aria-label','在 GitHub 上联系 bitrange');a.querySelector('span').textContent='Meet on GitHub';}
+ if(github){const a=$('contact-link');outbound(a,github);a.setAttribute('aria-label','在 GitHub 上联系 bitrange');a.querySelector('span').textContent='访问 GitHub';}
  if(cfg.email&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cfg.email)){
-  $('contact-link').href=`mailto:${cfg.email}`;$('contact-link').removeAttribute('target');$('contact-link').querySelector('span').textContent='Say hello';
+  $('contact-link').href=`mailto:${cfg.email}`;$('contact-link').removeAttribute('target');$('contact-link').querySelector('span').textContent='发邮件';
   $('copy-email').hidden=false;$('copy-email').onclick=async()=>{try{await navigator.clipboard.writeText(cfg.email);text('copy-status','已复制');}catch{text('copy-status',cfg.email);}};
  }
  function node(tag,cls,value){const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=value;return el;}
@@ -29,12 +29,12 @@
   const visible=filter==='all'?projects:projects.filter(p=>(p.language||'Other')===filter);
   $('projects').replaceChildren(...visible.map((p,index)=>{
    const card=node('article','project');
-   card.append(node('span','project-number',String(index+1).padStart(2,'0')+' / OPEN SOURCE'));
+   card.append(node('span','project-number',String(index+1).padStart(2,'0')));
    const info=node('div','project-info');info.append(node('h3','project-title',p.name));
    const tags=node('div','tags');
    for(const topic of [p.language||'Other',...(p.topics||[]).slice(0,2)])tags.append(node('span','tag',topic));
    info.append(tags);card.append(info);
-   const detail=node('div','project-detail');detail.append(node('p','project-desc',p.description||'一个持续探索中的开源项目。'));
+   const detail=node('div','project-detail');detail.append(node('p','project-desc',p.description||'暂无项目说明。'));
    const meta=node('div','project-meta');
    if(Number.isFinite(p.stargazers_count))meta.append(node('span','',`☆ ${p.stargazers_count}`));
    if(p.updated_at&&!Number.isNaN(Date.parse(p.updated_at)))meta.append(node('span','',`更新于 ${new Date(p.updated_at).toLocaleDateString('zh-CN')}`));
